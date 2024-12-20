@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Стили для react-day-picker */
+.rdp {
+  --rdp-cell-size: 40px;
+  --rdp-accent-color: var(--accent-primary);
+  --rdp-background-color: var(--accent-primary-light);
+  margin: 0;
+}
+
+/* Стили для темной темы */
+.dark .rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .rdp-day_selected,
+.dark .rdp-day_selected:hover {
+  background-color: var(--accent-primary);
+  color: white;
+}
+
+/* Остальные стили */
+.glass-panel {
+  @apply bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50;
+}
+
+.glass-card {
+  @apply bg-white/30 dark:bg-gray-800/30 backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30;
+}
+
+.column-neon {
+  position: relative;
+}
+
+.column-neon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.column-todo::after {
+  box-shadow: 0 0 20px rgba(var(--todo-rgb), 0.2);
+}
+
+.column-progress::after {
+  box-shadow: 0 0 20px rgba(var(--progress-rgb), 0.2);
+}
+
+.column-done::after {
+  box-shadow: 0 0 20px rgba(var(--done-rgb), 0.2);
+}
+
+.column-neon:hover::after {
+  opacity: 1;
+}
+
+:root {
+  --accent-primary: #6366f1;
+  --accent-primary-light: rgba(99, 102, 241, 0.1);
+  
+  --todo-rgb: 239, 68, 68;
+  --progress-rgb: 234, 179, 8;
+  --done-rgb: 34, 197, 94;
+  
+  --todo-light: rgb(var(--todo-rgb));
+  --progress-light: rgb(var(--progress-rgb));
+  --done-light: rgb(var(--done-rgb));
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+} 
